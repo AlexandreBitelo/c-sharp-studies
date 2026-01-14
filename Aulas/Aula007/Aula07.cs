@@ -1,4 +1,4 @@
-using System;
+yusing System;
 
 class Aula07
 {

@@ -3,48 +3,82 @@
 */
 
 using System;
-using System.Reflection.Metadata;
 
 class Program
 {
 
-    enum Positions { Pedra, Papel, Tesoura };
+    enum Shapes { Pedra, Papel, Tesoura };
 
     static void Main ()
     {
-        String player1Choise;
+        Shapes shapeChooseByPlayer = Shapes.Pedra;
+        Shapes shapeChooseByComputer = Shapes.Pedra;
+        Random random = new Random();
+        
+        interfaceStart();
 
-        String [] shape = new string [3] {"Pedra", "Papel", "Tesoura"};
+        Console.WriteLine ("Escolha uma forma para jogar");
+        showShapes();
 
-        int shapeChoise;
+        Console.Write ("Escolha: ");
+        shapeChooseByPlayer = choicerShape ();
 
+        shapeChooseByComputer = computerChoise (random);
+
+        Console.WriteLine ("A forma escolhida pelo player foi " + shapeChooseByPlayer);
+        Console.WriteLine ("A forma escolhida pelo computador foi " + shapeChooseByComputer);
+    }
+
+    static void interfaceStart ()
+    {
         Console.WriteLine ("--------------------------------------");
         Console.WriteLine ("|               JoKenPo              |");
         Console.WriteLine ("--------------------------------------");
-        
-        Console.WriteLine ("Escolha uma forma para jogar");
+
+    }
+
+    static void showShapes ()
+    {
         Console.WriteLine ("[1] Pedra");
         Console.WriteLine ("[2] Papel");
         Console.WriteLine ("[3] Tesoura");
-        Console.Write ("Escolha: ");
+    }
 
-        shapeChoise = Convert.ToInt32(Console.ReadLine());
+    static Shapes choicerShape ()
+    {
+        int choise  = -1;
+        Shapes shape = Shapes.Pedra;
 
-        switch (shapeChoise) {
+        choise = Convert.ToInt32(Console.ReadLine());
+        switch (choise) {
             case 1: 
-                player1Choise = shape[0];
+                shape = Shapes.Pedra;
                 break;
 
             case 2: 
-                player1Choise = shape[1];
+                shape = Shapes.Papel;
                 break;
 
             case 3: 
-                player1Choise = shape[2];
+                shape = Shapes.Tesoura;
                 break;
-        }
+            default:
+                Console.Clear();
+                Console.WriteLine ("Comando não reconhecido");
+                break;
+        } 
 
-        
-
+        return shape;
     }
+
+    static Shapes computerChoise (Random random)
+    {
+        int indexChoise = random.Next (0, 3);
+        Shapes shapeSelected = (Shapes)indexChoise;
+
+        return shapeSelected;
+    }
+
+
+
 }

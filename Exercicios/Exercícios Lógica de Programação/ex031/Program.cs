@@ -13,6 +13,7 @@ class Program
     {
         Shapes shapeChooseByPlayer = Shapes.Pedra;
         Shapes shapeChooseByComputer = Shapes.Pedra;
+        string winner; 
         Random random = new Random();
         
         interfaceStart();
@@ -25,8 +26,16 @@ class Program
 
         shapeChooseByComputer = computerChoise (random);
 
+        winner = whoiswinner (shapeChooseByPlayer, shapeChooseByComputer);
+
+
+
+
         Console.WriteLine ("A forma escolhida pelo player foi " + shapeChooseByPlayer);
         Console.WriteLine ("A forma escolhida pelo computador foi " + shapeChooseByComputer);
+
+
+
     }
 
     static void interfaceStart ()
@@ -79,6 +88,25 @@ class Program
         return shapeSelected;
     }
 
+    static string whoiswinner (Shapes player1Choise, Shapes player2Choise)
+    {
+        Shapes winner = "";            
+
+        // TESTES DENTRO DA ESTRUTURA CONDICIONAL
+
+        player1Choise = Shapes.Pedra;
+        player2Choise = Shapes.Papel;
+
+        if ( player1Choise == Shapes.Pedra & player2Choise == Shapes.Papel )
+        {
+            winner = Convert.ToString(player2Choise);
+        }
+
+        Console.WriteLine ("Na variável winner está armazenado " + winner);
+
+        return winner;
+
+    }
 
 
 }
